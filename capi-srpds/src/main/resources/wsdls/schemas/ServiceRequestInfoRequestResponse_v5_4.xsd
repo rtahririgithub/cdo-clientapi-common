@@ -1,0 +1,1411 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"     
+    xmlns:tns="http://xmlschema.tmi.telus.com/srv/CMO/OrderMgmt/ServiceRequestInfoRequestResponse_v5" 
+	targetNamespace="http://xmlschema.tmi.telus.com/srv/CMO/OrderMgmt/ServiceRequestInfoRequestResponse_v5" 
+    elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<!-- START ID TYPES OF REFERENCE TYPES 	-->	
+	
+	<xsd:simpleType name="accessTypeCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS HSIA_ACCESS_TYPE
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="accountProfileTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 PIN CHANGE 
+				 2 ADDRESS CHANGE 
+				 3 PAYMENT METHOD CHANGE 
+				 4 ACTIVITY REGISTRATION  	
+				 5 PROFILE MIGRATION FROM				 
+		   </xsd:documentation> 
+        </xsd:annotation> 
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="actionTypeIdType">
+		<xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 CREATE  
+				 2 REMOVE  
+				 3 UPDATE  
+				 4 INFO   	   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:long"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="actorRoleTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 REQUESTER 
+				 2 PROCESSOR 
+				 3 AWARD_RECEIVER 
+				 4 ACCOUNT 
+				 5 SUBSCRIBER 
+				 6 MOVE_TO_ACCOUNT 
+				 7 MOVE_TO_SUBSCRIBER 
+				 8 TARGET 
+				 9 REFERENCE 
+				10 OF RECORD 
+				11 APPROVER 
+				12 NEW TARGET		   
+		   </xsd:documentation> 
+        </xsd:annotation> 
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>	
+	<xsd:simpleType name="actorTypeIdType">
+		<xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 CHNL_ORG_ID 
+				 2 OUTLET_ID 
+				 3 SALESREP_ID 
+				 4 OPERATOR_ID 
+				 5 CHNL_ORG_TYPE_CD 
+				 6 KB_SUBSCRIBER_NUM 
+				 7 PREPAID_APP 
+				 8 SUBSCRIBER 
+				 9 ACCOUNT 
+				10 ORGANIZATION_ID 
+				11 INDIVIDUAL_ID 
+				12 CLIENT_ID 
+				13 SUBSCRIPTION_ID
+				14 KB_SALES_REP_PIN 
+				15 KB_DEALER_CD 
+				16 DATABASE_USER_ID 
+				17 CLIENT_PORTAL_USER_ID 
+				18 SHIPPING_OUTLET_CD 	 
+				19 AGENT_USER_ID 
+				20 PRODUCT_INSTANCE_KEY_ID  
+				21 EMAIL_ID 
+				22 ORDER_ID
+		   </xsd:documentation> 
+        </xsd:annotation> 
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>		
+	<xsd:simpleType name="applicationTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1	TOWIN
+				10	SSF
+				11	APOLLO
+				12	ARES
+				13	CSA
+				14	CSOM
+				15	GEMINI
+				16	HE
+				17	IVR
+				18	MERCURY
+				19	OOM
+				20	ROM
+				21	RMS
+				22	RTS
+				23	CSS
+				24	CSCM
+				25	DSS
+				26	WSS
+				27	SMARTDESKTOP
+				28	SWAPTRACK
+				29	CLIENT_OOM
+				30	AGENT_OOM
+				31	TN_CHANGE
+				32	PREPAID
+				33	CCP
+				34	CLPMON
+				35	OSIRIS
+				36	GIM
+				37	CTM
+				38	KOODO
+				39	RMS1
+				40	PRM
+				41	EXCHANGE
+				8471  UNE
+				9337  MEDIATIONZONE
+				9578  BESTBUY
+				9585  SAPCC
+				9732  M2M
+				9810  CAMBIO_PORTAL
+				9958  MSGWAS
+				11271 ESS
+				12373 WIRELESSSALES
+				12691 WEBREDIRECT
+				12692 SMSUNBLOCK
+				13174 MSCP
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="blockConditionTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				1 Temporary / Optional threshold block
+				2 Permanent threshold block
+				3 Immediate block
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="brandNameIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS BRAND_NAME
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="businessAreaTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 ACCOUNT  
+				 2 SUBSCRIBER  
+				 3 OTHERS    
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="consentTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 Unblock Service
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>	
+	<xsd:simpleType name="consentSubTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS SERVREQ_CONSENT_SUB_TYPE
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="thresholdTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS CONSENT_THRESHOLD_TYPE
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="contactPointPurposeTypeCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 BL	BILLING
+				 HM	HOME
+				 WK	WORK
+				 OT	OTHER
+				 MK	MARKETING INFORMATION
+				 PT	PROFILE TRACKING
+				 IN	INVOICE NOTIFICATION
+				 AP ALTERNATE PHONE NUMBER
+				 SP SHIPPING
+				 SV SERVICE
+				 PI PORT IN REQUESTOR
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="creditCardApplResultCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS CREDIT_CARD_APPL_RSLT 
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="creditCardTypeCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS CREDIT_CARD_TYPE
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>	
+	<xsd:simpleType name="equipmentDeviceTypeCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS EQUIPMENT_DEVICE_TYPE
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>	
+	<xsd:simpleType name="eventTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 MIGRATION EVENT 
+				 2 ACTIVATION EVENT 
+				 3 EXCHANGE EVENT 
+				 4 CONTRACT RENEWAL EVENT 
+				 5 HARDWARE UPGRADE EVENT 
+				 6 SSF CHARGE EVENT 
+				 7 MASS ACTIVATION EVENT 
+				 8 AWARD EVENT 
+				 9 ADJUSTMENT EVENT 
+				10 BILL PREFERENCE SETUP EVENT 
+				11 RETURN EVENT 
+				12 MASS FEATURE EVENT 
+				13 PROMOTION REDEMPTION EVENT 
+				14 SUSPEND RESUME ACCOUNT EVENT 
+				15 ACTIVATE FROM RESERVE EVENT 
+				16 SSF CREDIT EVENT 
+				17 MOVE EVENT 
+				18 CANCEL EVENT 
+				19 RESTORE CANCEL EVENT 
+				20 REPAIR EVENT 
+				21 ACCOUNT PROFILE EVENT 
+				22 SERVICE FEATURE EVENT
+				23 CONSENT EVENT 
+				24 BLOCK SERVICE EVENT 
+				25 UNBLOCK SERVICE EVENT    
+				26 BUSINESS CONN MIGRATION EVENT
+                27 SERVICE ADDRESS CHANGE EVENT		
+                28 TOWN INITIATION EVENT	
+                29 CREDIT CARD APPLICATION EVENT				
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="individualTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS SERVREQ_INDIVIDUAL_TYPE		 
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="networkUsageTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 Data
+                 2 Voice  
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="networkZoneTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 Domestic
+				 2 Roaming  
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="noteTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 STATUS 
+				 2 UPDATE 	  
+                 3 SPECIAL INSTRUCTIONS				 
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="objectTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 SSF 
+				 2 CCP 
+				 3 TOWIN_AWARD 
+				 4 TOWIN_ADJUSTMENT 
+				 5 TOWIN_SERVICE_PACKAGE 
+				 6 TOWIN_SERVICE_FEATURE 
+				 7 CLPMON 
+				 8 T2T 
+				 9 SUBSCRIBER_EQUIP 
+				10 CONTRACT 
+				12 PROMOTION_REDEMPTION 
+				13 ADDRESS 
+				14 CLIENT 
+				15 EMAIL ADDRESS 
+				16 INDIVIDUAL 
+				17 PHONE_NUMBER 
+				18 RESOURCE 
+				19 SUBSCRIPTION STATUS 
+				21 MASS_REQUEST 
+				22 SMS Address 
+				23 Invoice Presentation 
+				24 REWARD ACCOUNT 
+				25 ACCOUNT_PROFILE   	   
+				26 NETWORK_SERVICE
+				27 PRE_PAYMENT
+                28 PORT_REQUEST
+				29 CARD_APPLICATION
+                30 PAYMENT
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="offerProcessTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS SERVREQ_OFFER_PROCESS_TYPE		 
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="paymentMethodCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS PAYMENT_METHOD
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="paymentReasonTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS PAYMENT_REASON_TYPE 
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="portRequestTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		      Valid Values: Refer to RefPDS SERVREQ_PORT_REQUEST_TYPE			 
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="prepaidFundSourceTypeCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS PREPAID_FUND_SOURCE_TYPE
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="priorityTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 HIGH 
+				 2 MEDIUM 
+				 3 LOW
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="programTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 TAB
+				 2 BILL DISCOUNT
+				 3 SMART PAY   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>		
+	<xsd:simpleType name="provisioningTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 PROVISIONABLE 
+				 2 NON-PROVISIONABLE   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="reasonTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				  1 NEW SERVICE
+				  2 CHANGE OF SERVICE
+				  3 HWPASS
+				  4 HWPDISC
+				  5 HWSHIPDIFF
+				  6 HWSKUIN
+				  7 HWSERVIN
+				  8 HWPACT
+				  9 HVLOCK
+				 10 HWCLOWN
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="referenceNumTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS SERVREQ_REFERENCE_NO_TYPE		 
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="relationshipTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 SSF_CREDIT
+				 2 PARENT_CHILD
+				 4 REVERSAL
+				 5 MASS REQUEST
+				 6 EXCHANGE
+				 7 Exchange with Re-pricing
+				 8 Exchange with no Re-pricing
+				 9 CANCELLATION  
+				 10 Relate unblock network service event to consent event
+				 11 BUSINESS_CONNECT
+				 12 ASSOCIATION 
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="renewalSubtypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 FUTURE DATED
+				 2 SHIP AND SWAP
+				 3 REGULAR   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="resourceTypeCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS WIRELESS_BILLG_RESOURCE_TYP
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>	
+	<xsd:simpleType name="salesServiceTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS SERVREQ_SALES_SERVICE_TYPE  
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="serviceCollCatgyCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS SERVICE_COLL_CATGY
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="serviceCollTypeCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS SERVICE_COLL_TYPE
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>	
+	<xsd:simpleType name="servicePackageGrpCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS SERVICE_PACKAGE_GRP
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="serviceTypeCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS DSL_RETENTION
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="statusTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 NEW
+				 2 PENDING
+				 3 POSTED
+				 4 UNPOSTED
+				 5 CANCELLED
+				 6 RESERVED
+				 7 AWARDED
+				 8 FAILED_TO_AWARD
+				 9 PENDING_TO_FORWARD
+				10 COMPLETED
+				11 ABANDON
+				12 FAILED 	
+				13 INTERMEDIATE_ORDER_COMPLETED
+                14 PENDING AUTHORIZATION	
+                15 PENDING SHIPPING	
+                16 PENDING SWAP
+                17 SHIPPED 				
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>	
+	<xsd:simpleType name="streetDirectionCodeTypeCode">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS STREET_DIR_CA_POST	   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>			
+	<xsd:simpleType name="technologyTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values:
+				 1 1RTT
+				 2 ANA
+				 3 CDPD
+				 4 GSM
+				 5 LTE
+				 6 MIKE
+				 7 PAGE
+				 8 PCS
+				 9 RAD
+				10 TANG
+				11 UNKN 
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:int"/>
+	</xsd:simpleType>
+	<!--<xsd:simpleType name="wlsRewardProgramTypeIdType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS WLS_REWARD_PROGRAM_TYP	   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>-->
+	<xsd:simpleType name="offerPymtSuppTypeCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS OFFER_PYMT_SUPP_TYP	   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="taxPaymentChannelCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS TAX_PAYMENT_CHANNEL 	   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="taxPaymentMechanismCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS TAX_PAYMENT_MECHANISM   	   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="provinceCodeType">
+	    <xsd:annotation> 
+           <xsd:documentation>
+		       Valid Values: Refer to RefPDS PROVINCE   	   
+		   </xsd:documentation> 
+        </xsd:annotation>
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<!-- END ID TYPES OF REFERENCE TYPES 	-->
+
+	<xsd:complexType name="Actor">
+		<xsd:sequence>
+			<xsd:element name="actorId" type="xsd:long" minOccurs="0"/>			
+			<xsd:element name="actorRoleTypeId" type="tns:actorRoleTypeIdType"/>
+			<xsd:element name="actorTypeId" type="tns:actorTypeIdType"/>
+			<xsd:element name="sourceActorCode" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Note">
+		<xsd:sequence>
+		    <xsd:element name="actor" type="tns:Actor"/>
+			<xsd:element name="noteTypeId" type="tns:noteTypeIdType"/>
+			<xsd:element name="text" type="xsd:string"/>			
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Status">
+		<xsd:sequence>
+		    <xsd:element name="actorList" type="tns:Actor" minOccurs="1" maxOccurs="50"/>
+			<xsd:element name="applicationTypeId" type="tns:applicationTypeIdType"/>
+			<xsd:element name="businessDate" type="xsd:dateTime"/>
+			<xsd:element name="note" type="tns:Note" minOccurs="0"/>
+			<xsd:element name="referenceNum" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="referenceNumTypeId" type="tns:referenceNumTypeIdType" minOccurs="0"/>
+			<xsd:element name="sequenceNum" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="statusTypeId" type="tns:statusTypeIdType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="EntityPrimaryKey">
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long"/>
+			<xsd:element name="timestamp" type="xsd:dateTime"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceRequestPk">
+		<xsd:complexContent>
+			<xsd:extension base="tns:EntityPrimaryKey"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceRequestItemPk">
+		<xsd:complexContent>
+			<xsd:extension base="tns:EntityPrimaryKey"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ParentServiceRequestPk">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestPk">
+				<xsd:sequence>
+					<xsd:element name="relationshipTypeId" type="tns:relationshipTypeIdType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>	
+	<xsd:complexType name="TransactionWorkPk">
+		<xsd:complexContent>
+			<xsd:extension base="tns:EntityPrimaryKey"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceRequestHeader">
+		<xsd:sequence>
+		    <xsd:element name="actorList" type="tns:Actor" minOccurs="1" maxOccurs="50"/>
+			<xsd:element name="applicationTypeId" type="tns:applicationTypeIdType"/>
+			<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="effectiveDate" type="xsd:dateTime"/>
+			<xsd:element name="eventTypeId" type="tns:eventTypeIdType"/>
+			<xsd:element name="expiryDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="guid" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="headerReferenceId" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="languageCode" type="xsd:string"/>
+			<xsd:element name="name" type="xsd:string"/> 
+			<xsd:element name="origSrcTxnTs" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="parentServiceRequestPk" type="tns:ParentServiceRequestPk" minOccurs="0"/>
+			<xsd:element name="priorityTypeId" type="tns:priorityTypeIdType"/>
+			<xsd:element name="reasonTypeId" type="tns:reasonTypeIdType" minOccurs="0"/>
+			<xsd:element name="referenceNum" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="referenceNumTypeId" type="tns:referenceNumTypeIdType" minOccurs="0"/>
+			<xsd:element name="refId" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="serviceRequestPk" type="tns:ServiceRequestPk" minOccurs="0"/>			
+			<xsd:element name="status" type="tns:Status"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceRequestItem">
+		<xsd:sequence>
+			<xsd:element name="actionTypeId" type="tns:actionTypeIdType"/>
+			<xsd:element name="applicationTypeId" type="tns:applicationTypeIdType"/>
+			<xsd:element name="businessAreaTypeId" type="tns:businessAreaTypeIdType"/>
+			<xsd:element name="catalogItemId" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="expiryDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="guid" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="headerId" type="xsd:long" minOccurs="0"/>					
+			<xsd:element name="itemClientAccountId" type="xsd:long" minOccurs="0"/>			
+			<xsd:element name="itemEffectiveDate" type="xsd:dateTime"/>
+			<xsd:element name="itemName" type="xsd:string"/>
+			<xsd:element name="itemVersionId" type="xsd:long"/>			
+			<xsd:element name="objectTypeId" type="tns:objectTypeIdType"/>			
+			<xsd:element name="objectVersionId" type="xsd:long"/>	
+			<xsd:element name="otherId" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="provisioningTypeId" type="tns:provisioningTypeIdType"/>
+			<xsd:element name="reasonTypeId" type="tns:reasonTypeIdType" minOccurs="0"/>
+			<xsd:element name="referenceNum" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="referenceNumTypeId" type="tns:referenceNumTypeIdType" minOccurs="0"/>
+			<xsd:element name="refId" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="sequenceNum" type="xsd:int"/>
+			<xsd:element name="serviceRequestItemPk" type="tns:ServiceRequestItemPk"/>			
+			<xsd:element name="status" type="tns:Status"/>
+			<xsd:element name="subscriberId" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="subscriberMdn" type="xsd:string" minOccurs="0"/>	
+            <xsd:element name="supportedInd" type="xsd:boolean"/>            		
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="AccountProfileItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+				    <xsd:element name="accountCreditLimitPgmInd" type="xsd:boolean" minOccurs="0"/> 
+					<xsd:element name="accountProfileTypeId" type="tns:accountProfileTypeIdType"/>
+					<xsd:element name="activityTypeId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="activityActionTypeId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="banNum" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="billingSourceSystemId" type="xsd:string" minOccurs="0"/>	
+					<xsd:element name="cityName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="clientAccountActivityId" type="xsd:long" minOccurs="0"/>		
+					<xsd:element name="clientAccountId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="paymentMethodTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="postalCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="provincialStateCode" type="xsd:string" minOccurs="0"/>				
+					<xsd:element name="streetName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="streetNum" type="xsd:string" minOccurs="0"/>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AddressItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="addressLine1" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="addressLine2" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="addressLine3" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="addressLine4" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="cityName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="contactPointPurposeCode" type="tns:contactPointPurposeTypeCodeType"/>
+					<xsd:element name="countryCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="postalCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="provinceCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="streetDirectionCode" type="tns:streetDirectionCodeTypeCode" minOccurs="0"/>
+					<xsd:element name="streetName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="streetNum" type="xsd:string" minOccurs="0"/>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="AdjustmentItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="adjustmentAmt" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="adjustmentTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="balanceImpactCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="billingMethodId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="reasonCode" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CardApplicationItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="creditCardTypeCode" type="tns:creditCardTypeCodeType" minOccurs="0"/>
+					<xsd:element name="creditCardApplResultCode" type="tns:creditCardApplResultCodeType" minOccurs="0"/>			
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ClientAccountStatusItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="accountStatusCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="accountSubTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="accountTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="clientAccountId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="creditClassCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hotLineInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="kbBan" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="statusActivityCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="statusChangeReasonCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="tmiStatus" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="tmiStatusFlag" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ConsentItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+				    <xsd:element name="commentTxt" type="xsd:string" minOccurs="0"/>
+				    <xsd:element name="consentEffectiveDate" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="consentExpiryDate" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="consentTypeId" type="tns:consentTypeIdType"/>
+					<xsd:element name="consentSubTypeId" type="tns:consentSubTypeIdType" minOccurs="0"/>
+					<xsd:element name="maxThresholdTxt" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="minThresholdTxt" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="networkUsageTypeId" type="tns:networkUsageTypeIdType"/>
+					<xsd:element name="networkZoneTypeId" type="tns:networkZoneTypeIdType"/>
+					<xsd:element name="thresholdTypeId" type="tns:thresholdTypeIdType" minOccurs="0"/>										
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ContractItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+				    <xsd:element name="commitmentEndDate" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="commitmentInMonths" type="xsd:int" minOccurs="0"/>
+					<xsd:element name="commitmentReasonCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="commitmentStartDate" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="effectiveDate" type="xsd:dateTime" minOccurs="0"/>					
+					<xsd:element name="futureRenewalDate" type="xsd:dateTime" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>	
+	<xsd:complexType name="EmailAddressItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="contactPointPurposeCode" type="tns:contactPointPurposeTypeCodeType"/>
+					<xsd:element name="emailAddress" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="IndividualItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+				    <xsd:element name="aliasName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="birthDate" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="driverLicenseNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="firstName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="individualTypeId" type="tns:individualTypeIdType" minOccurs="0"/>
+					<xsd:element name="lastName" type="xsd:string"/>
+					<xsd:element name="middleName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="name" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="titleName" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="InvoicePresentationItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="callDetailSuppressionLevelCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="paperInvoiceSuppressionInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="summaryPaperBillInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="suppressionReturnEnvelope" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="MassRequestItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="agreementNum" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="autoRenewInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="banSubTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="banTypeCode" type="xsd:string"/>
+					<xsd:element name="clientIdentityVerifiedCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="lineRangeEnd" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="lineRangeStart" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="massRequestType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="numberOfAccountQty" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="numberOfSubscriberQty" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="serviceDescTxt" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="serviceId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="sourceFileLocation" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="technologyType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="userLocationCity" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="userLocationProvince" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="validityPeriodCnt" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>   
+	<xsd:complexType name="NetworkServiceItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+				    <xsd:element name="billingCycleDate" type="xsd:dateTime" minOccurs="0"/>
+				    <xsd:element name="blockConditionTypeId" type="tns:blockConditionTypeIdType"/>
+					<xsd:element name="brandNameId" type="tns:brandNameIdType" minOccurs="0"/>
+					<xsd:element name="networkZoneTypeId" type="tns:networkZoneTypeIdType"/>
+				    <xsd:element name="networkUsageTypeId" type="tns:networkUsageTypeIdType"/>
+					<xsd:element name="notificationLanguageCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="technologyTypeId" type="tns:technologyTypeIdType"/>					
+					<xsd:element name="thresholdAmount" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="thresholdPercentage" type="xsd:float" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PaymentItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="paymentMethodCode" type="tns:paymentMethodCodeType" minOccurs="0"/>
+					<xsd:element name="paymentReasonTypeId" type="tns:paymentReasonTypeIdType" minOccurs="0"/>
+                    <xsd:element name="cardNotPresentInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="taxPaymentChannelCode" type="tns:taxPaymentChannelCodeType" minOccurs="0"/>
+					<xsd:element name="taxPaymentMechanismCode" type="tns:taxPaymentMechanismCodeType" minOccurs="0"/>
+					<xsd:element name="taxationProvinceCode" type="tns:provinceCodeType" minOccurs="0"/>
+					<xsd:element name="gstRatePercentage" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="gstTaxAmount" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="hstRatePercentage" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="hstTaxAmount" type="xsd:float" minOccurs="0"/>					
+					<xsd:element name="pstRatePercentage" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="pstTaxAmount" type="xsd:float" minOccurs="0"/>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PhoneNumberItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="areaCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="contactPointPurposeCode" type="tns:contactPointPurposeTypeCodeType"/>
+					<xsd:element name="extension" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="phoneNum" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PortRequestItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="fromWlsAccountNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="fromWlsAccountPinStr" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="fromServiceProviderCode" type="xsd:string" minOccurs="0"/>				
+                    <xsd:element name="oldDeviceSerialNumStr" type="xsd:string" minOccurs="0"/>	
+					<xsd:element name="portRequestTypeId" type="tns:portRequestTypeIdType" minOccurs="0"/>
+					<xsd:element name="serviceTypeCode" type="tns:serviceTypeCodeType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PrePaymentItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="cardExpiryDate" type="xsd:dateTime"/>
+					<xsd:element name="cardHolderName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="cardId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="cardNumTokenId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="cardTypeCode" type="tns:creditCardTypeCodeType" minOccurs="0"/>
+					<xsd:element name="paymentAmt" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="paymentMethodStatusCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="prePaymentMethodTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="thresholdAmt" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="topUpTypeCode" type="xsd:string" minOccurs="0"/>			
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PromotionRedemptionItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="catalogueItemPromotionId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="channelContributionAmt" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="discountedSaveToolkitInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="discountValueAmt" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="kbSoc" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="offerCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="offerProcessTypeId" type="tns:offerProcessTypeIdType" minOccurs="0"/>
+					<xsd:element name="otherPromotionId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="otherPromotionIdSourceApp" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="phonePriceDiscountInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="programGroupCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="promotionTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="redemptionDate" type="xsd:dateTime"/>
+					<xsd:element name="sapDiscountNum" type="xsd:long" minOccurs="0"/>		
+                    <xsd:element name="wirelessOfferCode" type="xsd:string" minOccurs="0"/>		
+                    <xsd:element name="otherPromoPerspectiveTs" type="xsd:dateTime" minOccurs="0"/>
+					<!--<xsd:element name="otherPromoRewardProgramTypeId" type="tns:wlsRewardProgramTypeIdType" minOccurs="0"/>-->
+					<xsd:element name="offerId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="offerSapMaterialNum" type="xsd:string" minOccurs="0"/>	
+					<xsd:element name="offerPymtSuppTypeCode" type="tns:offerPymtSuppTypeCodeType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ResourceItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="fleetId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="fleetTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="ipAddress" type="xsd:string" minOccurs="0"/>			
+					<xsd:element name="memberId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="phoneNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="resourceTypeCode" type="tns:resourceTypeCodeType" minOccurs="0"/>
+					<xsd:element name="urbanId" type="xsd:long" minOccurs="0"/>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RewardAccountItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+				    <xsd:element name="programTypeId" type="tns:programTypeIdType" minOccurs="0"/>
+					<xsd:element name="rewardAccountAmt" type="xsd:float"/>
+					<xsd:element name="rewardPointCnt" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="rewardReasonTypeCode" type="xsd:string"/>
+					<xsd:element name="rewardTxnTypeCode" type="xsd:string"/>
+					<xsd:element name="sapDiscountNum" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ServiceFeatureItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="autoRenewInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="kbFeatureCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="parameterName" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="parameterValue" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="serviceId" type="xsd:long"/>
+					<xsd:element name="winppFeatureId" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ServicePackageItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+				    <xsd:element name="autoRenewPrepaidFundSourceCode" type="tns:prepaidFundSourceTypeCodeType" minOccurs="0"/>
+				    <xsd:element name="discountedSaveToolkitInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="kbSoc" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="kbSocTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="prepaidAutoRenewInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="purchasePrepaidFundSourceCode" type="tns:prepaidFundSourceTypeCodeType" minOccurs="0"/>
+					<xsd:element name="salesServiceTypeId" type="tns:salesServiceTypeIdType" minOccurs="0"/>
+					<xsd:element name="serviceId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="technologyType" type="xsd:string" minOccurs="0"/>											
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SMSAddressItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="contactPointPurposeCode" type="tns:contactPointPurposeTypeCodeType" minOccurs="0"/>
+					<xsd:element name="smsAddressTxt" type="xsd:string" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SSFItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="billingAccountType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="channelOrgCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="feeEffectiveDate" type="xsd:dateTime"/>
+					<xsd:element name="invoiceTxt" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="invoiceFrTxt" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="kbAdjustmentReasonCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="kbChargeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="kbDealerCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="kbProductType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="kbSalesRepCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="prepaidAdjReasonCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="prepaidChargeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="ssfAmt" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="ssfCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="ssfCreditReasonCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="ssfTransactionTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="toBeBilledInd" type="xsd:boolean"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SubscriberEquipmentItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="associatedMuleImei" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="channelCostAmt" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="activationDate" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="deductCommissionInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="equipmentDeviceTypeCode" type="tns:equipmentDeviceTypeCodeType" minOccurs="0"/>
+					<xsd:element name="finalEquipmentPriceAmt" type="xsd:float"  minOccurs="0"/>
+					<xsd:element name="initialManufactureDate" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="kbProductCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="leaseFlag" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="mtmPriceAmt" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="pendingDate" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="pendingProductGroupTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="productClassCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="productGroupTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="productStatusCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="repairId" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="sapOrderNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="selectedDevicePriceAmt" type="xsd:float" minOccurs="0"/>
+					<xsd:element name="smNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="swapRequestId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="swapType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="technologyType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="warrantyDate" type="xsd:dateTime" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="SubscriptionStatusItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+				    <xsd:element name="accessTypeCode" type="tns:accessTypeCodeType" minOccurs="0"/>
+					<xsd:element name="activationDate" type="xsd:dateTime"/>
+					<xsd:element name="brandNameId" type="tns:brandNameIdType" minOccurs="0"/>
+					<xsd:element name="cellPhoneNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="clientAccountId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="dataPhoneNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="deactivationDate" type="xsd:dateTime" minOccurs="0"/>
+					<xsd:element name="faxPhoneNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="hotLineInd" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="kbActivityReasonCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="kbBan" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="kbSubscriberId" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="maxAllowCapacityCnt" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="processingEligibilityNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="serviceCategoryCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="serviceCollCatgyCode" type="tns:serviceCollCatgyCodeType" minOccurs="0"/>
+					<xsd:element name="serviceCollGroupId" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="serviceCollTypeCode" type="tns:serviceCollTypeCodeType" minOccurs="0"/>
+					<xsd:element name="servicePackageGrpCode" type="tns:servicePackageGrpCodeType" minOccurs="0"/>
+					<xsd:element name="statusActivityCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="subscriberStatusCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="subscriptionId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="tmiStatus" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="tmiStatusFlag" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="uplinkSubscriberId" type="xsd:string" minOccurs="0"/>					
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="T2TItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+				    <xsd:element name="assignedOfferId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="assignedOfferIdSrcAppId" type="xsd:long"  minOccurs="0"/>
+					<xsd:element name="contextCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="contextTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="fromBillingMethod" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="fromTechType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="mdnCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="minCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="moveToBan" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="offerId" type="xsd:long"/>
+					<xsd:element name="offerIdSrcAppId" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="renewalSubtypeId" type="tns:renewalSubtypeIdType" minOccurs="0"/>
+					<xsd:element name="termLength" type="xsd:long" minOccurs="0"/>
+					<xsd:element name="toBillingMethod" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="toTechType" type="xsd:string" minOccurs="0"/>						
+					<xsd:element name="offerPerspectiveTs" type="xsd:dateTime" minOccurs="0"/>
+					<!--<xsd:element name="offerRewardProgramTypeId" type="tns:wlsRewardProgramTypeIdType" minOccurs="0"/>-->
+					<xsd:element name="offerSapMaterialNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="asgOfferPerspectiveTs" type="xsd:dateTime" minOccurs="0"/>
+					<!--<xsd:element name="asgOfferRewardProgramTypeId" type="tns:wlsRewardProgramTypeIdType" minOccurs="0"/>-->
+					<xsd:element name="asgOfferSapMaterialNum" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="offerPymtSuppTypeCode" type="tns:offerPymtSuppTypeCodeType" minOccurs="0"/>
+                    <xsd:element name="asgOfferPymtSuppTypeCode" type="tns:offerPymtSuppTypeCodeType" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="TelusInternalMigrationItem">
+		<xsd:complexContent>
+			<xsd:extension base="tns:ServiceRequestItem">
+				<xsd:sequence>
+					<xsd:element name="contextCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="contextTypeCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="mdnCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="minCode" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="offerId" type="xsd:long"/>					
+					<xsd:element name="sourceBillingMethod" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="sourceTechType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="targetBan" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="targetBillingMethod" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="targetTechType" type="xsd:string" minOccurs="0"/>
+					<xsd:element name="termLength" type="xsd:long" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>	
+	<xsd:complexType name="ServiceRequestSearchCriteria">
+		<xsd:sequence>			
+			<xsd:element name="actorTypeId" type="tns:actorTypeIdType"/>
+			<xsd:element name="applicationTypeIdList" type="tns:applicationTypeIdType" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="endDate" type="xsd:dateTime"/>
+			<xsd:element name="eventTypeIdList" type="tns:eventTypeIdType" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="kbSoc" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="objectTypeIdList" type="tns:objectTypeIdType" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="ParentServiceRequestPk" type="tns:ParentServiceRequestPk" minOccurs="0"/>
+			<xsd:element name="sourceActorCode" type="xsd:string"/>
+			<xsd:element name="startDate" type="xsd:dateTime"/>
+			<xsd:element name="statusTypeIdList" type="tns:statusTypeIdType" minOccurs="0" maxOccurs="50"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="ServiceRequest">
+		<xsd:sequence>
+			<xsd:element name="serviceRequestHeader" type="tns:ServiceRequestHeader"/>
+			<xsd:element name="serviceRequestItemCollection" type="tns:ServiceRequestItemCollection"/>			
+		</xsd:sequence>
+	</xsd:complexType>		
+	<xsd:complexType name="ServiceRequestItemCollection">
+		<xsd:sequence>
+			<xsd:element name="AccountProfileItemList" type="tns:AccountProfileItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="AddressItemList" type="tns:AddressItem" minOccurs="0" maxOccurs="50"/>			
+			<xsd:element name="AdjustmentItemList" type="tns:AdjustmentItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="CardApplicationItemList" type="tns:CardApplicationItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="ClientAccountStatusItemList" type="tns:ClientAccountStatusItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="ConsentItemList" type="tns:ConsentItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="ContractItemList" type="tns:ContractItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="EmailAddressItemList" type="tns:EmailAddressItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="IndividualItemList" type="tns:IndividualItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="InvoicePresentationItemList" type="tns:InvoicePresentationItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="MassRequestItemList" type="tns:MassRequestItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="NetworkServiceItemList" type="tns:NetworkServiceItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="PaymentItemList" type="tns:PaymentItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="PhoneNumberItemList" type="tns:PhoneNumberItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="PortRequestItemList" type="tns:PortRequestItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="PrePaymentItemList" type="tns:PrePaymentItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="PromotionRedemptionItemList" type="tns:PromotionRedemptionItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="ResourceItemList" type="tns:ResourceItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="RewardAccountItemList" type="tns:RewardAccountItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="ServiceFeatureItemList" type="tns:ServiceFeatureItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="ServicePackageItemList" type="tns:ServicePackageItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="SMSAddressItemList" type="tns:SMSAddressItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="SSFItemList" type="tns:SSFItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="SubscriberEquipmentItemList" type="tns:SubscriberEquipmentItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="SubscriptionStatusItemList" type="tns:SubscriptionStatusItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="T2TItemList" type="tns:T2TItem" minOccurs="0" maxOccurs="50"/>
+			<xsd:element name="TelusInternalMigrationItemList" type="tns:TelusInternalMigrationItem" minOccurs="0" maxOccurs="50"/>				
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="TransactionWork">
+		<xsd:sequence>
+		    <xsd:element name="billingCycleDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="blockConditionTypeId" type="tns:blockConditionTypeIdType"/>
+			<xsd:element name="brandNameId" type="tns:brandNameIdType" minOccurs="0"/>
+			<xsd:element name="eventTypeId" type="tns:eventTypeIdType"/>
+			<xsd:element name="networkUsageTypeId" type="tns:networkUsageTypeIdType"/>
+			<xsd:element name="networkZoneTypeId" type="tns:networkZoneTypeIdType"/>			
+			<xsd:element name="notificationLanguageCode" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="origSrcTxnTs" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="subscriberPhoneNum" type="xsd:string"/>	
+			<xsd:element name="technologyTypeId" type="tns:technologyTypeIdType"/>
+			<xsd:element name="thresholdAmount" type="xsd:float" minOccurs="0"/>
+			<xsd:element name="thresholdPercentage" type="xsd:float" minOccurs="0"/>
+			<xsd:element name="transactionWorkPk" type="tns:TransactionWorkPk"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="storeServiceRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequest" type="tns:ServiceRequest"/>
+				<xsd:element name="failOnPersistenceErrorInd" type="xsd:boolean"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="storeServiceRequestResponse">
+		<xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequestPk" type="tns:ServiceRequestPk"/>
+            </xsd:sequence>
+        </xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name="findServiceRequestHeaders">
+		<xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequestSearchCriteria" type="tns:ServiceRequestSearchCriteria"/>
+				<xsd:element name="parentRequestPkInd" type="xsd:boolean"/>
+            </xsd:sequence>
+        </xsd:complexType>
+	</xsd:element>
+	<xsd:element name="findServiceRequestHeadersResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequestHeaderList" type="tns:ServiceRequestHeader" minOccurs="0" maxOccurs="50"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	
+	<xsd:element name="findServiceRequests">
+		<xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequestSearchCriteria" type="tns:ServiceRequestSearchCriteria"/>
+				<xsd:element name="parentRequestPkInd" type="xsd:boolean"/>
+            </xsd:sequence>
+        </xsd:complexType>
+	</xsd:element>
+	<xsd:element name="findServiceRequestsResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequestList" type="tns:ServiceRequest" minOccurs="0" maxOccurs="50"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	
+	<xsd:element name="getServiceRequest">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequestPk" type="tns:ServiceRequestPk"/>
+				<xsd:element name="parentRequestPkInd" type="xsd:boolean"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="getServiceRequestResponse">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequest" type="tns:ServiceRequest"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>	
+
+	<xsd:element name="updateServiceRequestStatus">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequestPk" type="tns:ServiceRequestPk"/>
+				<xsd:element name="status" type="tns:Status"/>
+				<xsd:element name="updateItemsStatusInd" type="xsd:boolean"/>
+				<xsd:element name="applicationTypeId" type="tns:applicationTypeIdType"/>
+				<xsd:element name="failOnPersistenceErrorInd" type="xsd:boolean"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="updateServiceRequestStatusResponse">
+        <xsd:complexType>
+			<xsd:sequence/>
+		</xsd:complexType>
+    </xsd:element>
+	
+	<xsd:element name="updateServiceRequestItemStatus">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequestItemPkList" type="tns:ServiceRequestItemPk" minOccurs="1" maxOccurs="50"/>	
+				<xsd:element name="status" type="tns:Status"/>
+				<xsd:element name="applicationTypeId" type="tns:applicationTypeIdType"/>
+				<xsd:element name="failOnPersistenceErrorInd" type="xsd:boolean"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+	<xsd:element name="updateServiceRequestItemStatusResponse">
+	    <xsd:complexType>
+			<xsd:sequence/>
+		</xsd:complexType>
+    </xsd:element>
+	
+	<xsd:element name="storeServiceRequestItems">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="serviceRequestPk" type="tns:ServiceRequestPk"/>
+				<xsd:element name="serviceRequestItemCollection" type="tns:ServiceRequestItemCollection"/>
+				<xsd:element name="failOnPersistenceErrorInd" type="xsd:boolean"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>	
+	<xsd:element name="storeServiceRequestItemsResponse">
+	    <xsd:complexType>
+			<xsd:sequence/>
+		</xsd:complexType>
+	</xsd:element>	
+</xsd:schema>

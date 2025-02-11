@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <parent>
+        <groupId>telus.clientapi.common</groupId>
+        <artifactId>cdo-capi-common</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    
+    <artifactId>capi-common-kafka</artifactId>
+    <packaging>jar</packaging>
+    
+    <properties>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
+    <dependencies>
+    	<dependency>
+    	    <groupId>telus.clientapi.common</groupId>
+    	    <artifactId>capi-common-webclient</artifactId>
+    	    <version>${project.parent.version}</version>
+    	</dependency>
+    	<dependency>
+    	    <groupId>javax.xml.bind</groupId>
+    	    <artifactId>jaxb-api</artifactId>
+    	</dependency>
+    	<dependency>
+    	    <groupId>jakarta.xml.bind</groupId>
+    	    <artifactId>jakarta.xml.bind-api</artifactId>
+    	</dependency>
+    	<dependency>
+    	    <groupId>org.glassfish.jaxb</groupId>
+    	    <artifactId>jaxb-runtime</artifactId>
+    	</dependency>
+    	<dependency>
+    	    <groupId>telus-maven.plugins-support</groupId>
+    	    <artifactId>telus-core</artifactId>
+    	    <version>1.0.1</version>
+    	</dependency>
+    	<dependency>
+    	    <groupId>telus.cust.case.evnthdl-shared</groupId>
+    	    <artifactId>evnthdl-domain</artifactId>
+    	    <version>1.0.0</version>
+    	</dependency>
+    </dependencies>
+    
+    <description>Client API common Kafka module</description>
+    
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Telus Apache Maven Packages</name>
+            <url>${github.package.location}</url>
+        </repository>
+    </distributionManagement>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.15.2</version>
+                <executions>
+                    <execution>
+                        <id>jaxb2-xsdToJava</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <verbose>true</verbose>
+                            <extension>true</extension>
+                            <generateDirectory>target/generated-sources</generateDirectory>
+                            <clearOutputDir>false</clearOutputDir>
+                            <accessExternalSchema>all</accessExternalSchema>
+                            <schemaIncludes>
+                                <schemaInclude>KafkaWirelessAccount_v1_0.xsd</schemaInclude>
+                                <schemaInclude>KafkaWirelessSubscriber_v2_1.xsd</schemaInclude>
+                            </schemaIncludes>
+                            <args>
+                              <arg>-Xannotate</arg>
+                              <arg>-XremoveAnnotation</arg>
+                            </args>
+                            <plugins>
+                               <plugin>
+                                 <groupId>org.jvnet.jaxb2_commons</groupId>
+                                 <artifactId>jaxb2-basics-annotate</artifactId>
+                                 <version>1.1.0</version>
+                               </plugin>
+                               <plugin>
+                                 <groupId>com.fasterxml.jackson.core</groupId>
+                                 <artifactId>jackson-annotations</artifactId>
+                                 <version>${jackson.version}</version>
+                               </plugin>
+                            </plugins>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/target/generated-sources/</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+          <resource>
+                <directory>${basedir}/src/main/java</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+           <include>**/*.properties</include>
+        </includes>
+            </resource>
+        </resources>
+    </build>
+    
+</project>

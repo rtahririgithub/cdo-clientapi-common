@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <parent>
+        <groupId>telus.clientapi.common</groupId>
+        <artifactId>cdo-capi-common</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    
+    <artifactId>capi-common-amdocs</artifactId>
+    <packaging>jar</packaging>
+    
+    <properties>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>telus.clientapi.common</groupId>
+            <artifactId>capi-common-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amdocs.kbapi</groupId>
+            <artifactId>AmdocsEJB-client</artifactId>
+            <version>22.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amdocs.kbapi</groupId>
+            <artifactId>uams_v8.2_hf25</artifactId>
+            <version>21.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amdocs.kbapi</groupId>
+            <artifactId>ejbInfra_new-wl-12.2.1.4</artifactId>
+            <version>21.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.amdocs.kbapi</groupId>
+            <artifactId>jutil</artifactId>
+            <version>17.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>weblogic</groupId>
+            <artifactId>wlthint3client</artifactId>
+            <version>12.2.1.4</version>
+        </dependency>
+    </dependencies>
+    
+    <description>Client API common AMDOCS module</description>
+    
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Telus Apache Maven Packages</name>
+            <url>${github.package.location}</url>
+        </repository>
+    </distributionManagement>
+    
+ 
+    
+</project>

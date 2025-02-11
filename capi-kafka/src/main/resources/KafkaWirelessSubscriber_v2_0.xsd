@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://kafka.framework.cis.telus.com/subscriber_v2" targetNamespace="http://kafka.framework.cis.telus.com/subscriber_v2" elementFormDefault="qualified" attributeFormDefault="unqualified">	
+<xs:complexType name="SubscriberEvent">
+		<xs:sequence>
+			<xs:element name="eventType" type="xs:string" minOccurs="0"/>
+			<xs:element name="transactionDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="notificationSuppressionInd" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="auditInfo" type="AuditInfo" minOccurs="0"/>	
+			<xs:element name="managerInfo" type="ManagerInfo" minOccurs="0"/>	
+			<xs:element name="account" type="Account" minOccurs="0" />
+			<xs:element name="subscriber" type="Subscriber" minOccurs="0"/>
+			<xs:element name="equipment" type="Equipment" minOccurs="0"/>
+			<xs:element name="associatedEquipment" type="Equipment" minOccurs="0"/>
+			<xs:element name="serviceAgreement" type="ServiceAgreement" minOccurs="0"/>
+			<xs:element name="activityDetail" type="ActivityDetail" minOccurs="0" />	
+			<xs:element name="subscriberMoveDetail" type="SubscriberMoveDetail" minOccurs="0" />
+			<xs:element name="memo" type="Memo" minOccurs="0"/>	
+			<xs:element name="SubscriberStatusChangeList" type="SubscriberStatusChange" minOccurs="0" maxOccurs="500"/>
+			<xs:element name="oldName" type="ConsumerName" minOccurs="0"/>
+			<xs:element name="phoneNumberChangeDetail" type="PhoneNumberChangeDetail" minOccurs="0" />
+			<xs:element name="portActivityDetail" type="PortActivityDetail" minOccurs="0" />
+			<xs:element name="oldSubscriber" type="Subscriber" minOccurs="0"/>
+			<xs:element name="equipmentStatusChangeDetail" type="EquipmentStatusChangeDetail" minOccurs="0" />	
+	</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Account">
+		<xs:sequence>
+			<xs:element name="ban" type="xs:int" minOccurs="0"/>
+			<xs:element name="brandId" type="xs:int" minOccurs="0"/>
+			<xs:element name="accountType" type="xs:string" minOccurs="0"/>
+			<xs:element name="accountSubType" type="xs:string" minOccurs="0"/>
+			<xs:element name="status" type="xs:string" minOccurs="0"/>
+			<xs:element name="segmentCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="subSegmentCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="language" type="xs:string" minOccurs="0"/>
+			<xs:element name="email" type="xs:string" minOccurs="0"/>
+			<xs:element name="billDetail" type="BillDetail" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ActivityDetail">
+	<xs:sequence>
+		<xs:element name="activityReasonCd" type="xs:string" minOccurs="0" />
+		<xs:element name="activityDate" type="xs:date" minOccurs="0" />
+		<xs:element name="depositReturnMethod" type="xs:string" minOccurs="0" />
+		<xs:element name="portOutActivityInd" type="xs:boolean" minOccurs="0" />
+	    <xs:element name="interBrandPortOutInd" type="xs:boolean" minOccurs="0" />
+	    <xs:element name="activityDueToPrimaryCancelInd" type="xs:boolean" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="SubscriberMoveDetail">
+	<xs:sequence>
+		<xs:element name="ownershipChangeInd" type="xs:boolean" minOccurs="0" />
+		<xs:element name="targetBan" type="xs:int" minOccurs="0" />
+	</xs:sequence>
+   </xs:complexType>
+	<xs:complexType name="PhoneNumberChangeDetail">
+		<xs:sequence>
+			<xs:element name="newPhoneNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="oldPhoneNumber" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="EquipmentStatusChangeDetail">
+		<xs:sequence>
+			<xs:element name="reason" type="xs:string" minOccurs="0" />
+			<xs:element name="serialNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="equipmentType" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="Memo">
+		<xs:sequence>
+		<xs:element name="memoTypeCd" type="xs:string" minOccurs="0" />
+		<xs:element name="memoTxt" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="SubscriberStatusChange">
+		<xs:sequence>
+		<xs:element name="phoneNumber" type="xs:string" minOccurs="0" />
+		<xs:element name="subscriptionId" type="xs:string" minOccurs="0" />
+		<xs:element name="depositWaiveReasonCd" type="xs:string" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="BillDetail">
+		<xs:sequence>
+			<xs:element name="billCycleCode" type="xs:int" minOccurs="0"/>
+			<xs:element name="billCycleCloseDate" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Subscriber">
+		<xs:sequence>			
+			<xs:element name="productType" type="xs:string" minOccurs="0"/>
+		        <xs:element name="portType" type="xs:string" minOccurs="0"/>
+			<xs:element name="subscriptionId" type="xs:string" minOccurs="0"/>
+			<xs:element name="phoneNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="subscriberId" type="xs:string" minOccurs="0"/>
+			<xs:element name="startServiceDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="status" type="xs:string" minOccurs="0"/>
+			<xs:element name="statusDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="language" type="xs:string" minOccurs="0"/>
+			<xs:element name="email" type="xs:string" minOccurs="0"/>
+			<xs:element name="billingMasterSourceId" type="xs:string" minOccurs="0"/>
+			<xs:element name="PrimaryServiceResourceType" type="xs:string" minOccurs="0"/>
+			<xs:element name="consumerName" type="ConsumerName" minOccurs="0"/>
+			<xs:element name="seatData" type="SeatData" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="PortActivityDetail">
+		<xs:sequence>
+			<xs:element name="portProcessType" type="xs:string" minOccurs="0"/>
+			<xs:element name="portType" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="TargetAccount">
+		<xs:sequence>
+			<xs:element name="ban" type="xs:int" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ConsumerName">
+		<xs:sequence>
+			<xs:element name="title" type="xs:string" minOccurs="0"/>
+			<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+			<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+			<xs:element name="middleInitial" type="xs:string" minOccurs="0"/>
+			<xs:element name="generation" type="xs:string" minOccurs="0"/>
+			<xs:element name="additionalLine" type="xs:string" minOccurs="0"/>
+			<xs:element name="nameFormat" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="SeatData">
+		<xs:sequence>
+			<xs:element name="seatGroup" type="xs:string" minOccurs="0"/>
+			<xs:element name="seatType" type="xs:string" minOccurs="0"/>
+			<xs:element name="seatResourceList" type="Resource" minOccurs="0" maxOccurs="100"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Resource">
+		<xs:sequence>
+			<xs:element name="resourceType" type="xs:string" minOccurs="0"/>
+			<xs:element name="resourceNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="resourceStatus" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Equipment">
+		<xs:sequence>
+			<xs:element name="serialNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="imsiNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="equipmentType" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ServiceAgreement">
+		<xs:sequence>
+			<xs:element name="contractRenewalInd" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="services" type="Service" minOccurs="0" maxOccurs="100"/>
+			<xs:element name="commitment" type="Commitment" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Service">
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" minOccurs="0"/>
+			<xs:element name="parentServiceCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="serviceType" type="xs:string" minOccurs="0"/>
+			<xs:element name="descriptionEnglish" type="xs:string" minOccurs="0"/>
+			<xs:element name="descriptionFrench" type="xs:string" minOccurs="0"/>
+			<xs:element name="transactionType" type="xs:string" minOccurs="0"/>
+			<xs:element name="effectiveDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="expiryDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="sequenceNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="versionNo" type="xs:string" minOccurs="0"/>
+			<xs:element name="hasPromotionInd" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="isPromotionInd" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="familyTypeList" type="xs:string" minOccurs="0" maxOccurs="100"/>
+			<xs:element name="coverageType" type="xs:string" minOccurs="0"/>
+			<xs:element name="roamLikeHomeInd" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="recurringChargeAmt" type="xs:double" minOccurs="0"/>
+			<xs:element name="additionalChargeAmt" type="xs:double" minOccurs="0"/>
+			<xs:element name="billCycleTreatmentCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="durationServiceHours" type="xs:int" minOccurs="0"/>
+			<xs:element name="billingZeroChrgSuppressInd" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="featureCategoryList" type="xs:string" minOccurs="0" maxOccurs="100"/>
+			<xs:element name="features" type="Feature" minOccurs="0" maxOccurs="100"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Feature">
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" minOccurs="0"/>
+			<xs:element name="switchCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="categoryCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="parameter" type="xs:string" minOccurs="0"/>
+			<xs:element name="transactionType" type="xs:string" minOccurs="0"/>
+			<xs:element name="effectiveDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="expiryDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="callingCircleChangeInd" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="callingCircleInfo" type="CallingCircleInfo" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CallingCircleInfo">
+		<xs:sequence>
+			<xs:element name="phoneNumberList" type="xs:string" minOccurs="0" maxOccurs="50"/>
+			<xs:element name="effectiveDate" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Commitment">
+		<xs:sequence>
+			<xs:element name="months" type="xs:int" minOccurs="0"/>
+			<xs:element name="reasonCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="effectiveDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="expiryDate" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AuditInfo">
+		<xs:sequence>
+			<xs:element name="originatorApplicationId" type="xs:string" minOccurs="0"/>
+			<xs:element name="soaAppId" type="xs:string" minOccurs="0"/>
+			<xs:element name="kbUserId" type="xs:string" minOccurs="0"/>
+			<xs:element name="dealerCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="salesRepCode" type="xs:string" minOccurs="0"/>
+		    <xs:element name="sessionId" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ManagerInfo">
+		<xs:sequence>
+			<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+			<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+			<xs:element name="email" type="xs:string" minOccurs="0"/>
+			<xs:element name="language" type="xs:string" minOccurs="0"/>
+			<xs:element name="contactNumber" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

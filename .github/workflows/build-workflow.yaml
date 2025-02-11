@@ -1,0 +1,67 @@
+name: build-github-actions
+run-name: Activated by ${{ github.actor }}
+on: 
+  push:
+    branches: main
+    
+env:
+  MAVEN_USERNAME: ${{ github.actor }}
+  MAVEN_TOKEN: ${{ secrets.github_token }}
+
+jobs:
+  test-workflows:
+    name: build deploy - all
+    environment: 
+      name: dev
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'write'
+      packages: 'write'
+      id-token: 'write'
+      pull-requests: 'write'
+    outputs:
+      new_tag: ${{ steps.release.outputs.new_tag }} 
+    steps:
+      - name: "Cloning repo"
+        uses: actions/checkout@v3
+        
+      - id: tagging
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # We reformat it to match Cloud Deploy's naming convention
+      - name: "Reformat TAG"
+        id: release
+        run: echo "new_tag=`echo ${TAG//./-} | awk '{print tolower($0)}'`" >> $GITHUB_OUTPUT
+        env: 
+          TAG: ${{ steps.tagging.outputs.new_tag }}
+      
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'adopt'
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          
+      - name: "print env"
+        run: echo "building in ${{ github.workspace }} with $MAVEN_TOKEN"
+      
+      - name: "Add Amdocs/Weblogic/Telus libraries"
+        run : |
+          mvn install:install-file -Dfile=capi-amdocs/src/main/resources/lib/AmdocsEJB-client-22.8.1.jar -DgroupId=com.amdocs.kbapi -DartifactId=AmdocsEJB-client -Dversion=22.8.1 -Dpackaging=jar
+          mvn install:install-file -Dfile=capi-amdocs/src/main/resources/lib/uams_v8.2_hf25-21.8.1.jar -DgroupId=com.amdocs.kbapi -DartifactId=uams_v8.2_hf25 -Dversion=21.8.1 -Dpackaging=jar
+          mvn install:install-file -Dfile=capi-amdocs/src/main/resources/lib/ejbInfra_new-wl-12.2.1.4-21.8.1.jar -DgroupId=com.amdocs.kbapi -DartifactId=ejbInfra_new-wl-12.2.1.4 -Dversion=21.8.1 -Dpackaging=jar
+          mvn install:install-file -Dfile=capi-amdocs/src/main/resources/lib/jutil-17.2.0.jar -DgroupId=com.amdocs.kbapi -DartifactId=jutil -Dversion=17.2.0 -Dpackaging=jar
+          mvn install:install-file -Dfile=capi-amdocs/src/main/resources/lib/wlthint3client-12.2.1.4.jar -DgroupId=weblogic -DartifactId=wlthint3client -Dversion=12.2.1.4 -Dpackaging=jar
+          mvn install:install-file -Dfile=capi-kafka/src/main/resources/lib/telus-core-1.0.1.jar -DgroupId=telus-maven.plugins-support -DartifactId=telus-core -Dversion=1.0.1 -Dpackaging=jar
+          mvn install:install-file -Dfile=capi-kafka/src/main/resources/lib/evnthdl-domain-1.0.0.jar -DgroupId=telus.cust.case.evnthdl-shared -DartifactId=evnthdl-domain -Dversion=1.0.0 -Dpackaging=jar
+ 
+      - name: Build with Maven
+        run: mvn -B clean package --file pom.xml
+        
+      - name: Publish/deploy packag
+        run: |
+          mvn -B -e deploy -s $GITHUB_WORKSPACE/.maven/settings.xml
+        

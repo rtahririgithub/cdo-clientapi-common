@@ -1,0 +1,40 @@
+<jxb:bindings version="2.0" 
+	xmlns="http://java.sun.com/xml/ns/jaxb"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" 
+	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	xmlns:annox="http://annox.dev.java.net"
+	xmlns:ci="http://jaxb.dev.java.net/plugin/code-injector"
+	jxb:extensionBindingPrefixes="annox"
+	>
+  
+  <jxb:bindings schemaLocation="KafkaWirelessSubscriber_v2_1.xsd" multiple="true" >
+    <jxb:bindings node="//xs:complexType[@name='ConsumerName']">
+      <annox:annotate target="class">
+        @com.fasterxml.jackson.annotation.JsonInclude(com.fastxml.jackson.annotation.JsonInclude.Inclusion.ALWAYS)
+    </annox:annotate>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='Subscriber']/xs:sequence/xs:element[@name='email']">
+      <annox:annotate target="field">
+        @com.fasterxml.jackson.annotation.JsonInclude(com.fastxml.jackson.annotation.JsonInclude.Inclusion.ALWAYS)
+      </annox:annotate>
+    </jxb:bindings>
+    <jxb:bindings node="//xs:complexType[@name='Service']/xs:sequence/xs:element[@type='xs:date']" multiple="true">
+      <annox:annotate target="field">
+        @com.fasterxml.jackson.annotation.JsonInclude(com.fastxml.jackson.annotation.JsonInclude.Inclusion.ALWAYS)
+      </annox:annotate>
+    </jxb:bindings>
+  </jxb:bindings>
+	  
+  <jxb:globalBindings generateElementProperty="false">
+    <xjc:javaType name="java.util.Date" xmlType="xs:date" adapter="com.telus.framework.xml.bind.DateAdapter" />
+    <xjc:javaType name="java.util.Date" xmlType="xs:dateTime" adapter="com.telus.framework.xml.bind.DateTimeAdapter" />
+    <xjc:javaType name="java.lang.Long" xmlType="xs:integer" adapter="com.telus.framework.xml.bind.LongAdapter" />
+    <jxb:serializable uid="1" />
+  </jxb:globalBindings>
+	
+</jxb:bindings>
+
+
+
+

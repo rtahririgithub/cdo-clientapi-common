@@ -1,0 +1,48 @@
+name: Publish capi-common-security
+on:
+  # [push]
+  workflow_dispatch:
+
+env:
+  MAVEN_USERNAME: ${{ github.actor }}
+  MAVEN_TOKEN: ${{ secrets.github_token }}
+
+jobs:
+  build-commons:
+    name: publish capi-common-security
+    environment:
+      name: dev
+    runs-on: ubuntu-latest
+    outputs:
+      new_tag: ${{ steps.release.outputs.new_tag }}
+    permissions:
+      contents: 'read'
+      packages: 'write'
+      
+    steps:
+      - name: "Cloning repo"
+        uses: actions/checkout@v3
+      
+      - id: tagging
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      # We reformat it to match Cloud Deploy's naming convention
+      - name: "Reformat TAG"
+        id: release
+        run: echo "new_tag=`echo ${TAG//./-} | awk '{print tolower($0)}'`" >> $GITHUB_OUTPUT
+        env: 
+          TAG: ${{ steps.tagging.outputs.new_tag }}
+
+      # Setup Maven to build application first
+      - name: Set up Apache Maven Central
+        uses: actions/setup-java@v3
+        with: # running setup-java again overwrites the settings.xml
+          java-version: 11
+          distribution: 'adopt'
+          server-id: github                           
+
+      - name: Maven Build jar file
+        run: mvn deploy -f capi-security -s $GITHUB_WORKSPACE/.maven/settings.xml 
+          

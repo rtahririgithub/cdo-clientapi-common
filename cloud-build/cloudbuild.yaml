@@ -1,0 +1,39 @@
+steps:
+
+  # Download chaches dependancies
+  - id: 'download-cached-maven-dependencies'
+    name: gcr.io/cloud-builders/gsutil
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        gsutil cp gs://${_CI_REPO_ID}-cache-dependencies/cache/maven-dependencies.tgz maven-dependencies.tgz || exit 0
+        tar -zxf maven-dependencies.tgz --directory / || exit 0
+
+  - name: 'adoptopenjdk/openjdk11:alpine-jre'
+    id: 'build-step'
+    entrypoint: 'mvn'
+    args: ['clean','install']
+  
+    # Upload Maven dependancies after downloading
+  - id: 'upload-cached-maven-dependencies'
+    waitFor: [ 'build-step']
+    name: gcr.io/cloud-builders/gsutil
+    entrypoint: bash
+    args:
+      - '-c'
+      - |
+        tar -zcf maven-dependencies.tgz /root/.m2
+        gsutil cp maven-dependencies.tgz gs://${_CI_REPO_ID}-cache-dependencies/cache/maven-dependencies.tgz
+
+
+options:
+  volumes:
+    - name: 'mavenrepo'
+      path: '/root/.m2' 
+
+substitutions:
+  _SERVICE_NAME: cdo-clientapi-commons 
+  _REPO_ID: cio-gke-devops-e4993356
+  _PROJECT_ID: cio-client-identity  
+  _CI_REPO_ID: cio-client-identity-np-72c485

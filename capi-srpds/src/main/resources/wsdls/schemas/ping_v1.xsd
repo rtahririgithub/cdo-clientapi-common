@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 rel. 2 sp1 (http://www.altova.com) by TELUS COMMUNICATIONS (TELUS COMMUNICATIONS) -->
+<xs:schema xmlns:tns="http://xmlschema.tmi.telus.com/xsd/Enterprise/BaseTypes/types/ping_v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://xmlschema.tmi.telus.com/xsd/Enterprise/BaseTypes/types/ping_v1" version="1.0">
+    <xs:element name="pingResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="version" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="ping">
+        <xs:complexType>
+            <xs:sequence/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

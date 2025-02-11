@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <parent>
+        <groupId>telus.clientapi.common</groupId>
+        <artifactId>cdo-capi-common</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    
+    <artifactId>capi-common-web-security</artifactId>
+    <packaging>jar</packaging>
+    
+
+    
+    <properties>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>telus.clientapi.common</groupId>
+            <artifactId>capi-common-core</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-ldap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>9.31</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    
+    
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Telus Apache Maven Packages</name>
+            <url>${github.package.location}</url>
+        </repository>
+    </distributionManagement>
+
+
+    
+    <build>
+        <extensions>
+            <!-- GCP extension to enable artifact registry integration -->
+            <extension>
+                <groupId>com.google.cloud.artifactregistry</groupId>
+                <artifactId>artifactregistry-maven-wagon</artifactId>
+                <version>2.2.0</version>
+            </extension>
+        </extensions>
+    </build>
+
+    
+    <description>Client API common web security module</description>
+</project>
